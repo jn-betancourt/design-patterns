@@ -8,16 +8,28 @@ public class Reserva {
   private TipoAlojamiento alojamiento;
   private Collection<TipoTransporte> transporte;
   private Collection<Actividades> actividades;
-  private Collection<Dietas> dieta;
+  private Collection<Dietas> dietas;
 
-  public Reserva() {
-    this.fechaSalida = null;
-    this.destino = "";
-    this.duracion = 0;
-    this.alojamiento = null;
-    this.transporte = new ArrayList<TipoTransporte>();
-    this.actividades = new ArrayList<Actividades>();
-    this.dieta = new ArrayList<Dietas>();
+  // public Reserva() {
+  //   this.fechaSalida = null;
+  //   this.destino = "";
+  //   this.duracion = 0;
+  //   this.alojamiento = null;
+  //   this.transporte = new ArrayList<TipoTransporte>();
+  //   this.actividades = new ArrayList<Actividades>();
+  //   this.dieta = new ArrayList<Dietas>();
+  // }
+
+  // The code you provided is a constructor for the `Reserva` class. A constructor is a special method
+  // that is used to initialize the object of a class.
+  public Reserva(LocalDate fecha, String destino, int duracion, TipoAlojamiento alojamiento, Collection<TipoTransporte>transporte, Collection<Actividades>actividades, Collection<Dietas>dietas){
+      this.fechaSalida = fecha;
+      this.destino = destino;
+      this.duracion = duracion;
+      this.alojamiento = alojamiento;
+      this.transporte = transporte;
+      this.actividades = actividades;
+      this.dietas = dietas;
   }
 
   // Getter and Setter for fechaSalida
@@ -75,12 +87,12 @@ public class Reserva {
   }
 
   // Getter and Setter for dieta
-  public Collection<Dietas> getDieta() {
-    return dieta;
+  public Collection<Dietas> getDietas() {
+    return dietas;
   }
 
-  public void setDieta(Collection<Dietas> dieta) {
-    this.dieta = dieta;
+  public void setDietas(Collection<Dietas> dietas) {
+    this.dietas = dietas;
   }
 
   
@@ -93,7 +105,70 @@ public String toString() {
             "Alojamiento", alojamiento != null ? alojamiento.toString() : "",
             "Transporte", transporte != null ? transporte.toString() : "",
             "Actividades", actividades != null ? actividades.toString() : "",
-            "Dieta", dieta != null ? dieta.toString() : "");
+            "Dieta", dietas != null ? dietas.toString() : "");
 }
   
+  /**
+   * The function returns a new instance of the ReservaBuilder class.
+   * 
+   * @return The method is returning a new instance of the ReservaBuilder class.
+   */
+  public static ReservaBuilder builder(){
+    return new ReservaBuilder();
+  }
+
+  /**
+   * The ReservaBuilder class is a builder pattern implementation for creating Reserva objects with
+   * various properties.
+   */
+  public static class ReservaBuilder{
+    private LocalDate fechaSalida;
+    private String destino;
+    private int duracion;
+    private TipoAlojamiento alojamiento;
+    private Collection<TipoTransporte> transporte;
+    private Collection<Actividades> actividades;
+    private Collection<Dietas> dietas;
+
+    public ReservaBuilder fechaSalida(LocalDate fechaSalida) {
+      this.fechaSalida = fechaSalida;
+      return this;
+    }
+
+    public ReservaBuilder destino(String destino) {
+      this.destino = destino;
+      return this;
+    }
+
+    public ReservaBuilder duracion(int duracion) {
+      this.duracion = duracion;
+      return this;
+    }
+
+    public ReservaBuilder alojamiento(TipoAlojamiento alojamiento) {
+      this.alojamiento = alojamiento;
+      return this;
+    }
+
+    public ReservaBuilder transporte(Collection<TipoTransporte> transporte) {
+      this.transporte = transporte;
+      return this;
+    }
+
+    public ReservaBuilder actividades(Collection<Actividades> actividades) {
+      this.actividades = actividades;
+      return this;
+    }
+
+    public ReservaBuilder dietas(Collection<Dietas> dietas) {
+      this.dietas = dietas;
+      return this;
+    } 
+    
+    public Reserva build(){
+      return new Reserva(fechaSalida, destino, duracion, alojamiento, transporte, actividades, dietas);
+    }
+
+  }
+
 }
