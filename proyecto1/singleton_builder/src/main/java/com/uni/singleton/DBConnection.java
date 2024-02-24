@@ -20,6 +20,18 @@ public class DBConnection {
         this.timeOut = timeOut;
     }
 
+    /**
+     * The function creates a new database connection with the specified parameters after checking if a
+     * connection for the user already exists.
+     * 
+     * @param user A User object 
+     * @param encoding Determine by the enum Encodings
+     * @param ssl Boolean check to know if connection is encrypted
+     * @param port Port number where db is listening
+     * @param dbName Name of the db attempting to connect
+     * @param timeOut Wait time before to close connection
+     * @return An instance of the `DBConnection` class is being returned.
+     */
     public static DBConnection createConnection(User user, Encodings encoding, boolean ssl, int port, String dbName, int timeOut) throws Exception{
         Collection<User> users = DBConnection.users;
         for(User u: users){
@@ -79,10 +91,19 @@ public class DBConnection {
                 + ", timeOut=" + timeOut + "]";
     }
 
+    /**
+     * The function `builder()` returns a new instance of `BuilderDBConnection`.
+     * 
+     * @return An instance of the `BuilderDBConnection` class is being returned.
+     */
     public static BuilderDBConnection builder(){
         return new BuilderDBConnection();
     }
 
+    /**
+     * The `BuilderDBConnection` class is used to construct and configure a `DBConnection` object with
+     * specific parameters.
+     */
     public static class BuilderDBConnection{        
         private User user;
         private Encodings encoding;
@@ -117,6 +138,13 @@ public class DBConnection {
             return this;
         }
 
+        /**
+         * The `build` function creates and returns a `DBConnection` object with specified parameters.
+         * 
+         * @return An instance of the `DBConnection` class is being returned after creating a
+         * connection with the specified parameters such as user, encoding, ssl, port, dbName, and
+         * timeOut.
+         */
         public DBConnection build() throws Exception{
             return DBConnection.createConnection(user, encoding, ssl, port, dbName, timeOut);
         }
