@@ -1,5 +1,11 @@
 package com.uni.singleton;
 
+/*
+Grupo de trabajo:
+- Juan Antonio Betancourt
+- Esteban Gomez Leon
+- Jacobo Villa
+*/
 public class Main {
     public static void main(String[] args) {
         try{
