@@ -1,0 +1,6 @@
+package creational.factory;
+
+public enum MetodoPago {
+    PAYPAL, TARJETA_CREDITO, TARJETA_DEBITO,
+    GOOGLE_PAY, APPLE_PAY, EFECTIVO, BITCOIN, TRANSFERENCIA_BANCARIA
+}
